@@ -242,6 +242,26 @@
                 }
                  
             }); 
+
+            // Search data -------------------------
+            $(document).on('keyup', function(e){
+                e.preventDefault();
+
+                let search_keyword = $('#searchForm').val();
+
+                $.ajax({
+                    type: "GET",
+                    url: "{{route('student.search')}}",
+                    data: {search_keyword:search_keyword},
+                    dataType: "json",
+                    
+                    success: function (response) {
+                        $('.table-data').html(response);
+                        console.log(response);
+                    }
+                });
+                
+            })
         });
     </script>
     

@@ -71,4 +71,15 @@ class StudentsController extends Controller
 
         return response()->json(['status'=>'success']); 
     }
+
+    public function search(Request $request)
+    {
+        $search_data = Student::where('name', '%'.$request->search_keyword.'%');
+        // ->orWhere('roll', 'like', '%'.$request->search_keyword.'%')
+        // ->orWhere('course', 'like', '%'.$request->search_keyword.'%')
+        // ->orderBy('id', 'desc');
+
+        return response()->json($search_data);
+        // return view('search', compact('search_data'))->render();
+    }
 }
